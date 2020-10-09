@@ -11,13 +11,11 @@ type OidNode struct {
 	childs []OidNode
 }
 
-
-
 func main() {
 	root := initData()
 	walk := root.walk()
 	for _, s := range walk {
-		fmt.Printf(s)
+		fmt.Printf("%s", s)
 	}
 }
 
@@ -25,11 +23,11 @@ func (node OidNode) walk() []string {
 	return node.walkPrefix("")
 }
 
-func (node OidNode) walkPrefix(prefix string) []string{
+func (node OidNode) walkPrefix(prefix string) []string {
 
 	var result []string
 	for _, child := range node.childs {
-		result = append(result, child.walkPrefix(prefix + "." + strconv.Itoa(node.id))...)
+		result = append(result, child.walkPrefix(prefix+"."+strconv.Itoa(node.id))...)
 	}
 	return result
 }
